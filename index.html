@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+  <main>
+    <section class="profile">
+      <div class="profile__user">
+        <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Аватар">
+        <div class="profile__profile-info">
+          <div class="profile__name-editing">
+            <h1 class="profile__name">Южанин</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <p class="profile__about">Фотографируй глазами</p>
+        </div>
+      </div>
+      <button class="profile__add-button"></button>
+    </section>
+    <section class="elements">
+      <article class="element">
+        <img class="element__photo" src="./images/element-esto.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Эсто-Садок</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__photo" src="./images/element-anapa.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Побережье Анапы</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__photo" src="./images/element-abrau.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Абрау Дюрсо</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__photo" src="./images/element-mountain.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Красная Поляна</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__photo" src="./images/element-sochi.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Морской вокзал Сочи</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img class="element__photo" src="./images/element-rosa-hutor.jpg" alt="Фотография">
+        <div class="element__capture-like">
+          <p class="element__capture">Роза Хутор</p>
+          <button class="element__like"></button>
+        </div>
+      </article>
+    </section>
+
+    <div class="edit-form__overlay">
+      <form class="edit-form">
+        <h2 class="edit-form__title">Редактировать профиль</h2>
+        <input type="text" id="profile_name" name="name" class="edit-form__field">
+        <input type="text" id="profile_about" name="about" class="edit-form__field">
+        <button class="edit-form__submit-button">Сохранить</button>
+      </form>
+    </div>
+
+
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2022 Mesto Russia</p>
+  </footer>
+</body>
+
+</html>
