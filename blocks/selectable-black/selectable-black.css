@@ -1,0 +1,4 @@
+.selectable-black:hover {
+  opacity: .8;
+  transition: opacity .3s linear;
+}

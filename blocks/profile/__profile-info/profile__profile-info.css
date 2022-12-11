@@ -4,3 +4,15 @@
   justify-content: center;
   width: 336px;
 }
+
+@media screen and (max-width: 420px) {
+  .profile__profile-info  {
+    width: 282px;
+  }
+}
+
+@media screen and (max-width: 619px) {
+  .profile__profile-info  {
+    max-width: 282px;
+  }
+}

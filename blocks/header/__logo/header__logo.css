@@ -5,3 +5,11 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 420px) {
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+    margin-left: 27px;
+  }
+}

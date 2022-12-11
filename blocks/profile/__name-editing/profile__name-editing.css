@@ -1,3 +1,10 @@
 .profile__name-editing {
   display: flex;
 }
+
+@media screen and (max-width: 677px) {
+  .profile__name-editing  {
+    justify-content: center;
+    padding-top: 22.25px;
+  }
+}
