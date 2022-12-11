@@ -71,20 +71,21 @@
       </article>
     </section>
 
-    <div class="edit-form__overlay">
-      <form class="edit-form">
-        <h2 class="edit-form__title">Редактировать профиль</h2>
-        <input type="text" id="profile_name" name="name" class="edit-form__field">
-        <input type="text" id="profile_about" name="about" class="edit-form__field">
-        <button class="edit-form__submit-button">Сохранить</button>
+    <div class="popup">
+      <form class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" id="profile_name" name="name" class="popup__field">
+        <input type="text" id="profile_about" name="about" class="popup__field">
+        <button type="submit" class="popup__submit-button">Сохранить</button>
       </form>
+      <button class="popup__close-button"></button>
     </div>
-
 
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
+  <script src="./index.js"></script>
 </body>
 
 </html>
