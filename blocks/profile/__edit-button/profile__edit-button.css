@@ -8,6 +8,7 @@
   margin-top: 15px;
   background: url(../../../images/profile-edit-button.svg) no-repeat center;
   cursor: pointer;
+  flex-grow: 0;
 }
 
 @media screen and (max-width: 420px) {
