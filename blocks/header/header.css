@@ -6,12 +6,6 @@
   border-bottom: 1px solid #545454;
 }
 
-@media screen and (max-width: 919px) {
-  .header {
-    width: calc(100% - 38px);
-  }
-}
-
 @media screen and (max-width: 420px) {
   .header {
     padding-top: 28px;

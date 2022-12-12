@@ -5,6 +5,7 @@
 @media screen and (max-width: 677px) {
   .profile__name-editing  {
     justify-content: center;
-    padding-top: 22.25px;
+    padding-top: 25.25px;
+    padding-left: 26px;
   }
 }

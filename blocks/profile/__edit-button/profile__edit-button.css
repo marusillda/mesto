@@ -5,7 +5,7 @@
   border-radius: 0;
   background-color: transparent;
   margin-left: 18px;
-  margin-top: 16px;
+  margin-top: 15px;
   background: url(../../../images/profile-edit-button.svg) no-repeat center;
   cursor: pointer;
 }
@@ -15,6 +15,6 @@
     width: 18px;
     height: 18px;
     margin-left: 10px;
-    margin-top: 9px;
+    margin-top: 8px;
   }
 }

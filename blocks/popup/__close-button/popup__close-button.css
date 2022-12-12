@@ -3,18 +3,18 @@
   height: 32px;
   border: 0;
   background-color: transparent;
-  background: url(../../../images/popup-close-icon.svg) no-repeat center;
+  background: url(../../../images/popup-close-icon.svg) no-repeat center/contain;
   cursor: pointer;
   position: absolute;
-  top: calc(50vh - 330px/2 - 8px - 32px);
+  top: 155px;
   left: calc(50% + 430px/2 + 8px);
 }
 
 @media screen and (max-width: 540px) {
-  .popup__close-button  {
+  .popup__close-button {
     width: 20px;
     height: 20px;
-    top: calc(50vh - 322px/2 - 20px - 16px);
+    top: 87px;
     left: calc(50% + 282px/2 - 20px);
   }
 }
