@@ -9,6 +9,13 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 
 /**
+ * Обработчик закрытия Popup
+ */
+function handlePopupClose(){
+  popup.classList.remove('popup_opened');
+}
+
+/**
  * Обработчик события Form Submit
  * @param {Event} event
  */
@@ -19,13 +26,6 @@ function handleFormSubmit(event){
   profileAboutElement.textContent = popupAboutElement.value;
 
   handlePopupClose();
-}
-
-/**
- * Обработчик закрытия Popup
- */
-function handlePopupClose(){
-  popup.classList.remove('popup_opened');
 }
 
 /**
