@@ -10,7 +10,7 @@
 
 <body class="page">
   <header class="header">
-    <div class="header__logo"></div>
+    <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сайта Место">
   </header>
   <main>
     <section class="profile">
@@ -19,72 +19,79 @@
         <div class="profile__profile-info">
           <div class="profile__name-editing">
             <h1 class="profile__name">Южанин</h1>
-            <button class="profile__edit-button selectable-white"></button>
+            <button type="button" class="profile__edit-button selectable-white"
+              aria-label="Кнопка редактирования профиля"></button>
           </div>
           <p class="profile__about">Фотографируй глазами</p>
         </div>
       </div>
-      <button class="profile__add-button selectable-white"></button>
+      <button type="button" class="profile__add-button selectable-white"
+        aria-label="Кнопка добавления карточек мест"></button>
     </section>
     <section class="elements" aria-label="Фотографии мест">
       <article class="element">
-        <img class="element__photo" src="./images/element-esto.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-esto.jpg" alt="Фотография места Эсто-Садок">
         <div class="element__capture-like">
-          <p class="element__capture">Эсто-Садок</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Эсто-Садок</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
       <article class="element">
-        <img class="element__photo" src="./images/element-anapa.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-anapa.jpg" alt="Фотография побережья Анапы">
         <div class="element__capture-like">
-          <p class="element__capture">Побережье Анапы</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Побережье Анапы</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
       <article class="element">
-        <img class="element__photo" src="./images/element-abrau.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-abrau.jpg" alt="Вид на Арау-Дюрсо с высоты птичьего полета">
         <div class="element__capture-like">
-          <p class="element__capture">Абрау Дюрсо</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Абрау Дюрсо</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
       <article class="element">
-        <img class="element__photo" src="./images/element-mountain.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-mountain.jpg"
+          alt="Вид на горы и канатную дорогу в Красной Поляне">
         <div class="element__capture-like">
-          <p class="element__capture">Красная Поляна</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Красная Поляна</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
       <article class="element">
-        <img class="element__photo" src="./images/element-sochi.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-sochi.jpg" alt="Фотография Морского вокзала Сочи">
         <div class="element__capture-like">
-          <p class="element__capture">Морской вокзал Сочи</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Морской вокзал Сочи</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
       <article class="element">
-        <img class="element__photo" src="./images/element-rosa-hutor.jpg" alt="Фотография">
+        <img class="element__photo" src="./images/element-rosa-hutor.jpg" alt="Вид со смотровой площадки в Роза-Хутор">
         <div class="element__capture-like">
-          <p class="element__capture">Роза Хутор</p>
-          <button class="element__like selectable-white"></button>
+          <h2 class="element__capture">Роза Хутор</h2>
+          <button type="button" class="element__like selectable-like" aria-label="Кнопка Поставить лайк"></button>
         </div>
       </article>
     </section>
-
-    <div class="popup">
-      <form class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" id="profile_name" name="name" class="popup__field">
-        <input type="text" id="profile_about" name="about" class="popup__field">
-        <button type="submit" class="popup__submit-button selectable-black">Сохранить</button>
-      </form>
-      <button class="popup__close-button selectable-white"></button>
-    </div>
 
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="editProfileForm">
+        <input type="text" id="profile_name" name="name" class="popup__field">
+        <input type="text" id="profile_about" name="about" class="popup__field">
+        <button type="submit" class="popup__submit-button selectable-black"
+          aria-label="Кнопка Сохранить">Сохранить</button>
+      </form>
+      <button type="button" class="popup__close-button selectable-white"
+        aria-label="Кнопка закрытия окна редактирования профиля"></button>
+    </div>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 

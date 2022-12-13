@@ -1,0 +1,7 @@
+.selectable-like {
+  transition: opacity .3s ease-in-out;
+}
+
+.selectable-like:hover {
+  opacity: .5;
+}

@@ -6,15 +6,15 @@
   background: url(../../../images/popup-close-icon.svg) no-repeat center/contain;
   cursor: pointer;
   position: absolute;
-  top: 155px;
+  top: -40px;
   left: calc(50% + 430px/2 + 8px);
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 619px) {
   .popup__close-button {
     width: 20px;
     height: 20px;
-    top: 87px;
+    top: -36px;
     left: calc(50% + 282px/2 - 20px);
   }
 }
