@@ -23,6 +23,7 @@
 @import url(../blocks/element/__capture-like/element__capture-like.css);
 @import url(../blocks/element/__capture/element__capture.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/element__like-fill.css);
 /*Всплывающий popup*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

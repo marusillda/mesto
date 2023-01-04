@@ -29,49 +29,15 @@
         aria-label="Кнопка добавления карточек мест"></button>
     </section>
     <section class="elements" aria-label="Фотографии мест">
-      <article class="element">
-        <img class="element__photo" src="./images/element-esto.jpg" alt="Фотография места Эсто-Садок">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Эсто-Садок</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
+      <template id="card">
+        <article class="element">
+          <img class="element__photo" src="" alt="">
+          <div class="element__capture-like">
+            <h2 class="element__capture"></h2>
+            <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
+          </div>
       </article>
-      <article class="element">
-        <img class="element__photo" src="./images/element-anapa.jpg" alt="Фотография побережья Анапы">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Побережье Анапы</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__photo" src="./images/element-abrau.jpg" alt="Вид на Арау-Дюрсо с высоты птичьего полета">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Абрау Дюрсо</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__photo" src="./images/element-mountain.jpg"
-          alt="Вид на горы и канатную дорогу в Красной Поляне">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Красная Поляна</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__photo" src="./images/element-sochi.jpg" alt="Фотография Морского вокзала Сочи">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Морской вокзал Сочи</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__photo" src="./images/element-rosa-hutor.jpg" alt="Вид со смотровой площадки в Роза-Хутор">
-        <div class="element__capture-like">
-          <h2 class="element__capture">Роза Хутор</h2>
-          <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
-        </div>
-      </article>
+      </template>
     </section>
 
   </main>
@@ -79,14 +45,27 @@
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="editProfileForm">
-        <input type="text" id="profile_name" name="name" class="popup__field">
-        <input type="text" id="profile_about" name="about" class="popup__field">
+        <input type="text" id="profile_name" name="name" class="popup__field" placeholder="Имя">
+        <input type="text" id="profile_about" name="about" class="popup__field" placeholder="Профессия">
         <button type="submit" class="popup__submit-button selectable-black"
           aria-label="Кнопка Сохранить">Сохранить</button>
+      </form>
+      <button type="button" class="popup__close-button selectable-white"
+        aria-label="Кнопка закрытия окна редактирования профиля"></button>
+    </div>
+  </div>
+  <div class="popup popup_type_new-card">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="addCardForm">
+        <input type="text" id="card_name" name="name" class="popup__field" placeholder="Название">
+        <input type="text" id="card_link" name="link" class="popup__field" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__submit-button selectable-black"
+          aria-label="Кнопка Сохранить">Создать</button>
       </form>
       <button type="button" class="popup__close-button selectable-white"
         aria-label="Кнопка закрытия окна редактирования профиля"></button>
