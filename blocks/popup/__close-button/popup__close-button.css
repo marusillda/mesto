@@ -15,6 +15,6 @@
     width: 20px;
     height: 20px;
     top: -36px;
-    left: calc(50% + 282px/2 - 20px);
+    left: calc(100% - 20px);
   }
 }
