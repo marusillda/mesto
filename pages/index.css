@@ -33,6 +33,9 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__card-image/popup__card-image.css);
+@import url(../blocks/popup/__card-name/popup__card-name.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 /*Подвал сайта footer*/
 @import url(../blocks/footer/footer.css);

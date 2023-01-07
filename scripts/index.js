@@ -10,6 +10,9 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupNewCard = document.querySelector('.popup_type_new-card');
+const popupPreview = document.querySelector('.popup_type_image');
+const popupPreviewImage = popupPreview.querySelector('.popup__card-image');
+const popupPreviewName = popupPreview.querySelector('.popup__card-name');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupNewCard.querySelector('.popup__form');
 const initialCards = [
@@ -86,6 +89,12 @@ function getCard(card){
   cardElement.querySelector('.element__capture').textContent = card.name;
   cardElement.querySelector('.element__like').addEventListener('click', handleLikeButtonClick);
   cardElement.querySelector('.element__trash').addEventListener('click', handleRemoveButtonClick);
+  cardElement.querySelector('.element__photo').addEventListener('click', () => {
+    popupPreviewImage.src = card.link;
+    popupPreviewImage.alt = card.name;
+    popupPreviewName.textContent = card.name;
+    openPopup(popupPreview);
+  });
 
   return cardElement;
 }
