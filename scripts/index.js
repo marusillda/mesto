@@ -48,11 +48,28 @@ function toggleLikeCard(likeButton){
 }
 
 /**
+ * Удаление карточки из DOM
+ * @param {HTMLElement} cardElement
+ */
+function removeCardElement(cardElement){
+  cardElement.remove();
+}
+
+/**
  * Обработка события клика по кнопке Like
  * @param {Event} event
  */
 function handleLikeButtonClick(event){
   toggleLikeCard(event.target);
+}
+
+/**
+ * Обработка события клика по кнопке Удалить карточку
+ * @param {Event} event
+ */
+function handleRemoveButtonClick(event){
+  const cardElement = event.target.closest('.element');
+  removeCardElement(cardElement);
 }
 
 /**
@@ -68,6 +85,7 @@ function getCard(card){
   cardElement.querySelector('.element__photo').alt = card.name;
   cardElement.querySelector('.element__capture').textContent = card.name;
   cardElement.querySelector('.element__like').addEventListener('click', handleLikeButtonClick);
+  cardElement.querySelector('.element__trash').addEventListener('click', handleRemoveButtonClick);
 
   return cardElement;
 }
