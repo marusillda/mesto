@@ -5,7 +5,7 @@ const editFormNameElement = document.querySelector('#profile_name');
 const editFormAboutElement = document.querySelector('#profile_about');
 const addFormNameElement = document.querySelector('#card_name');
 const addFormLinkElement = document.querySelector('#card_link');
-const popupCloseButtons = Array.from(document.querySelectorAll('.popup__close-button'));
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -15,32 +15,8 @@ const popupPreviewImage = popupPreview.querySelector('.popup__card-image');
 const popupPreviewName = popupPreview.querySelector('.popup__card-name');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupNewCard.querySelector('.popup__form');
-const initialCards = [
-  {
-    name: 'Эсто-Садок',
-    link: './images/element-esto.jpg'
-  },
-  {
-    name: 'Побережье Анапы',
-    link: './images/element-anapa.jpg'
-  },
-  {
-    name: 'Абрау Дюрсо',
-    link: './images/element-abrau.jpg'
-  },
-  {
-    name: 'Красная Поляна',
-    link: './images/element-mountain.jpg'
-  },
-  {
-    name: 'Морской вокзал Сочи',
-    link: './images/element-sochi.jpg'
-  },
-  {
-    name: 'Роза Хутор',
-    link: './images/element-rosa-hutor.jpg'
-  }
-];
+const cardTemplate = document.querySelector('#card').content.querySelector('.element');
+const cardElements = document.querySelector('.elements');
 
 /**
  * переключение состояния кнопки Like
@@ -81,15 +57,15 @@ function handleRemoveButtonClick(event){
  * @returns {HTMLElement}
  */
 function getCard(card){
-  const cardTemplate = document.querySelector('#card').content;
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardElementPhoto = cardElement.querySelector('.element__photo');
 
-  cardElement.querySelector('.element__photo').src = card.link;
-  cardElement.querySelector('.element__photo').alt = card.name;
+  cardElementPhoto.src = card.link;
+  cardElementPhoto.alt = card.name;
   cardElement.querySelector('.element__capture').textContent = card.name;
   cardElement.querySelector('.element__like').addEventListener('click', handleLikeButtonClick);
   cardElement.querySelector('.element__trash').addEventListener('click', handleRemoveButtonClick);
-  cardElement.querySelector('.element__photo').addEventListener('click', () => {
+  cardElementPhoto.addEventListener('click', () => {
     popupPreviewImage.src = card.link;
     popupPreviewImage.alt = card.name;
     popupPreviewName.textContent = card.name;
@@ -104,7 +80,6 @@ function getCard(card){
  * @param {HTMLElement} cardElement
  */
 function appendCard(cardElement){
-  const cardElements = document.querySelector('.elements');
   cardElements.append(cardElement);
 }
 
@@ -113,7 +88,6 @@ function appendCard(cardElement){
  * @param {HTMLElement} cardElement
  */
 function prependCard(cardElement){
-  const cardElements = document.querySelector('.elements');
   cardElements.prepend(cardElement);
 }
 
@@ -172,9 +146,9 @@ function openPopup(popup){
 }
 
 /**
- * Обработчик закрытия Popup
+ * Обработчик закрытия Popup по кнопке
  */
-function handlePopupClose(event){
+function handlePopupButtonClose(event){
   const popup = event.target.closest('.popup');
   closePopup(popup);
 }
@@ -201,7 +175,7 @@ function handlePopupAddOpen(){
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupAddForm.addEventListener('submit', handleAddFormSubmit);
 popupCloseButtons.forEach(function(closeButton){
-  closeButton.addEventListener('click', handlePopupClose);
+  closeButton.addEventListener('click', handlePopupButtonClose);
 });
 profileEditButton.addEventListener('click', handlePopupEditOpen);
 profileAddButton.addEventListener('click', handlePopupAddOpen);

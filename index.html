@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="./scripts/constants.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
 </head>
 
 <body class="page">
@@ -31,7 +33,7 @@
     <section class="elements" aria-label="Фотографии мест">
       <template id="card">
         <article class="element">
-          <img class="element__photo" src="data:," alt="Альтернативный текст">
+          <img class="element__photo" src="#" alt="Альтернативный текст">
           <button type="button" class="element__trash" aria-label="Кнопка Удалить карточку"></button>
           <div class="element__capture-like">
             <h2 class="element__capture"></h2>
@@ -51,8 +53,8 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="editProfileForm">
-        <input type="text" id="profile_name" name="name" class="popup__field" placeholder="Имя">
-        <input type="text" id="profile_about" name="about" class="popup__field" placeholder="Профессия">
+        <input type="text" id="profile_name" name="name" class="popup__field" placeholder="Имя" required>
+        <input type="text" id="profile_about" name="about" class="popup__field" placeholder="Профессия" required>
         <button type="submit" class="popup__submit-button selectable-black"
           aria-label="Кнопка Сохранить">Сохранить</button>
       </form>
@@ -64,8 +66,8 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="addCardForm">
-        <input type="text" id="card_name" name="name" class="popup__field" placeholder="Название">
-        <input type="text" id="card_link" name="link" class="popup__field" placeholder="Ссылка на картинку">
+        <input type="text" id="card_name" name="name" class="popup__field" placeholder="Название" required>
+        <input type="url" id="card_link" name="link" class="popup__field" placeholder="Ссылка на картинку" required>
         <button type="submit" class="popup__submit-button selectable-black"
           aria-label="Кнопка Сохранить">Создать</button>
       </form>
@@ -76,14 +78,13 @@
 
   <div class="popup popup_type_image">
     <div class="popup__card">
-      <img class="popup__card-image" src="data:," alt="Альтернативный текст">
+      <img class="popup__card-image" src="#" alt="Альтернативный текст">
       <h2 class="popup__card-name"></h2>
       <button type="button" class="popup__close-button selectable-white"
         aria-label="Кнопка закрытия окна редактирования профиля"></button>
     </div>
   </div>
 
-  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
