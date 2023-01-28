@@ -20,3 +20,6 @@
   margin-top: 29px;
 }
 
+.popup__field:invalid {
+  border-bottom: 1px solid #FF0000;
+}

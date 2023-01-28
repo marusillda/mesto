@@ -181,3 +181,10 @@ profileEditButton.addEventListener('click', handlePopupEditOpen);
 profileAddButton.addEventListener('click', handlePopupAddOpen);
 
 loadInitialCards();
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  errorClassSuffix: '-error',
+  submitButtonSelector: '.popup__submit-button'
+});
