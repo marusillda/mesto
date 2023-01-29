@@ -56,7 +56,7 @@
  ┃ ┣ 📂page
  ┃ ┣ 📂popup
  ┃ ┣ 📂profile
- ┃ ┣ 📂selectable-black
+ ┃ ┗📂selectable-black
  ┣ 📂fonts
  ┃ ┣ 📜Inter-Regular.woff
  ┃ ┗ 📜Inter-Regular.woff2
@@ -64,7 +64,9 @@
  ┣ 📂pages
  ┃ ┗ 📜index.css
  ┣ 📂scripts
- ┃ ┗ 📜index.js
+ ┃ ┣ 📜constants.js
+ ┃ ┣ 📜index.js
+ ┃ ┗ 📜validate.js
  ┣ 📂vendor
  ┃ ┣ 📜fonts.css
  ┃ ┗ 📜normalize.css
@@ -81,6 +83,7 @@
 📂images        - Каталог, содержащие изображения
 📂pages         - Каталог в котором подключаются CSS стили, необходимые конкретной странице
 📂vendor        - Каталог с 3rd-party зависимостями
+📂scripts       - Каталог с js-скриптами
 ```
 # Оценка качества кода <a name="Quality"></a>
 Качество кода обусловлено его проверкой по чек-листу Яндекс Практикума, автоматическими проверками и код-ревью специалистом Яндекс Практикума.
