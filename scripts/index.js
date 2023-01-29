@@ -15,6 +15,7 @@ const popupPreviewImage = popupPreview.querySelector('.popup__card-image');
 const popupPreviewName = popupPreview.querySelector('.popup__card-name');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupNewCard.querySelector('.popup__form');
+const popupAddFormSubmitButton = popupAddForm.querySelector(validationOptions.submitButtonSelector);
 const cardTemplate = document.querySelector('#card').content.querySelector('.element');
 const cardElements = document.querySelector('.elements');
 
@@ -22,7 +23,7 @@ const cardElements = document.querySelector('.elements');
  * переключение состояния кнопки Like
  * @param {HTMLElement} likeButton
  */
-function toggleLikeCard(likeButton){
+function toggleLikeCard(likeButton) {
   likeButton.classList.toggle('element__like-fill');
 }
 
@@ -30,7 +31,7 @@ function toggleLikeCard(likeButton){
  * Удаление карточки из DOM
  * @param {HTMLElement} cardElement
  */
-function removeCardElement(cardElement){
+function removeCardElement(cardElement) {
   cardElement.remove();
 }
 
@@ -38,7 +39,7 @@ function removeCardElement(cardElement){
  * Обработка события клика по кнопке Like
  * @param {Event} event
  */
-function handleLikeButtonClick(event){
+function handleLikeButtonClick(event) {
   toggleLikeCard(event.target);
 }
 
@@ -46,7 +47,7 @@ function handleLikeButtonClick(event){
  * Обработка события клика по кнопке Удалить карточку
  * @param {Event} event
  */
-function handleRemoveButtonClick(event){
+function handleRemoveButtonClick(event) {
   const cardElement = event.target.closest('.element');
   removeCardElement(cardElement);
 }
@@ -56,7 +57,7 @@ function handleRemoveButtonClick(event){
  * @param {Object} card Объект с полями name  и  link
  * @returns {HTMLElement}
  */
-function getCard(card){
+function getCard(card) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardElementPhoto = cardElement.querySelector('.element__photo');
 
@@ -79,7 +80,7 @@ function getCard(card){
  * Добавляет карточку в DOM в конец
  * @param {HTMLElement} cardElement
  */
-function appendCard(cardElement){
+function appendCard(cardElement) {
   cardElements.append(cardElement);
 }
 
@@ -87,15 +88,15 @@ function appendCard(cardElement){
  * Добавляет карточку в DOM в начало
  * @param {HTMLElement} cardElement
  */
-function prependCard(cardElement){
+function prependCard(cardElement) {
   cardElements.prepend(cardElement);
 }
 
 /**
  * Загрузка начальных карточек их массива
  */
-function loadInitialCards(){
-  initialCards.forEach(function (card){
+function loadInitialCards() {
+  initialCards.forEach(function (card) {
     const cardElement = getCard(card);
     appendCard(cardElement);
   });
@@ -105,15 +106,17 @@ function loadInitialCards(){
  * Закрытие Popup
  * @param {HTMLElement} popup
  */
-function closePopup(popup){
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', handleOverlayClick);
+  document.removeEventListener('keydown', handleEscDown);
 }
 
 /**
  * Обработчик события Form Submit
  * @param {Event} event
  */
-function handleEditFormSubmit(event){
+function handleEditFormSubmit(event) {
   event.preventDefault();
 
   profileNameElement.textContent = editFormNameElement.value;
@@ -126,7 +129,7 @@ function handleEditFormSubmit(event){
  * Обработчик события Add Form Submit
  * @param {Event} event
  */
-function handleAddFormSubmit(event){
+function handleAddFormSubmit(event) {
   event.preventDefault();
   const newCard = {
     name: addFormNameElement.value,
@@ -138,17 +141,52 @@ function handleAddFormSubmit(event){
 }
 
 /**
+ * Ищет открытый попап
+ * @returns
+ */
+function findOpenedPopup() {
+  return document.querySelector('.popup_opened');
+}
+
+/**
+ * Обработчик нажатия клавиши Escape
+ * @param {Event} event
+ */
+function handleEscDown(event) {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    const popup = findOpenedPopup();
+
+    closePopup(popup);
+  }
+}
+
+/**
+ * Обработчик клика по Overlay
+ * @param {Event} event
+ */
+function handleOverlayClick(event) {
+  const popup = findOpenedPopup();
+
+  if (popup === event.target) {
+    closePopup(popup);
+  }
+}
+
+/**
  * Открытие Popup
  * @param {HTMLElement} popup
  */
-function openPopup(popup){
+function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', handleOverlayClick);
+  document.addEventListener('keydown', handleEscDown);
 }
 
 /**
  * Обработчик закрытия Popup по кнопке
  */
-function handlePopupButtonClose(event){
+function handlePopupButtonClose(event) {
   const popup = event.target.closest('.popup');
   closePopup(popup);
 }
@@ -156,7 +194,7 @@ function handlePopupButtonClose(event){
 /**
  * Обработчки открытия Popup с редактированием имени профиля и профессии
  */
-function handlePopupEditOpen(){
+function handlePopupEditOpen() {
   editFormNameElement.value = profileNameElement.textContent;
   editFormAboutElement.value = profileAboutElement.textContent;
 
@@ -166,15 +204,16 @@ function handlePopupEditOpen(){
 /**
  * Обработчки открытия Popup добавления карточки
  */
-function handlePopupAddOpen(){
+function handlePopupAddOpen() {
   popupAddForm.reset();
+  disableSubmitButton(popupAddFormSubmitButton);
   openPopup(popupNewCard);
 }
 
 //Обработчики событий
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 popupAddForm.addEventListener('submit', handleAddFormSubmit);
-popupCloseButtons.forEach(function(closeButton){
+popupCloseButtons.forEach(function (closeButton) {
   closeButton.addEventListener('click', handlePopupButtonClose);
 });
 profileEditButton.addEventListener('click', handlePopupEditOpen);
@@ -182,9 +221,4 @@ profileAddButton.addEventListener('click', handlePopupAddOpen);
 
 loadInitialCards();
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__field',
-  errorClassSuffix: '-error',
-  submitButtonSelector: '.popup__submit-button'
-});
+enableValidation(validationOptions);

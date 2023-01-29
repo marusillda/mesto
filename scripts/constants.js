@@ -24,3 +24,10 @@ const initialCards = [
     link: './images/element-rosa-hutor.jpg'
   }
 ];
+
+const validationOptions = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  inputErrorClass: 'popup__field_type_error',
+  submitButtonSelector: '.popup__submit-button'
+};

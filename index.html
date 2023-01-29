@@ -69,8 +69,10 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="addCardForm">
-        <input type="text" id="card_name" name="name" class="popup__field" placeholder="Название" required>
+        <input type="text" id="card_name" name="name" class="popup__field" placeholder="Название" required minlength="2" maxlength="30">
+        <span class="popup__error card_name-error"></span>
         <input type="url" id="card_link" name="link" class="popup__field" placeholder="Ссылка на картинку" required>
+        <span class="popup__error card_link-error"></span>
         <button type="submit" class="popup__submit-button selectable-black"
           aria-label="Кнопка Сохранить">Создать</button>
       </form>
