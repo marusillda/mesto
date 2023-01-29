@@ -65,11 +65,11 @@ const enableSubmitButton = (submitButton) => {
 
 /**
  * Деактивирует Submit Button если хотя бы одно поле ввода не валидно
- * @param {array <HTMLElement>} inputList
+ * @param {array <HTMLElement>} inputs
  * @param {HTMLElement} submitButton
  */
-const toggleButtonState = (inputList, submitButton) => {
-  const hasInvalidInput = inputList.some((formInput) => !isInputValid(formInput));
+const toggleButtonState = (inputs, submitButton) => {
+  const hasInvalidInput = inputs.some((formInput) => !isInputValid(formInput));
 
   if (hasInvalidInput) {
     disableSubmitButton(submitButton);
@@ -85,11 +85,11 @@ const toggleButtonState = (inputList, submitButton) => {
 *   inputSelector: string,
 *   inputErrorClass: string,
 *   submitButtonSelector: string
- * }} param0
+ * }} validationOptions
  */
 const enableValidation = ({ formSelector, ...rest }) => {
-  const formList = document.querySelectorAll(formSelector);
-  formList.forEach((formElement) => {
+  const forms = document.querySelectorAll(formSelector);
+  forms.forEach((formElement) => {
     setEventListeners(formElement, rest);
   });
 };
@@ -101,13 +101,13 @@ const enableValidation = ({ formSelector, ...rest }) => {
 *   inputSelector: string,
 *   inputErrorClass: string,
 *   submitButtonSelector: string
- * }} param1
+ * }} validationOptions
  */
 const setEventListeners = (formElement, { inputSelector, inputErrorClass, submitButtonSelector}) => {
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  const inputs = Array.from(formElement.querySelectorAll(inputSelector));
   const submitButton = formElement.querySelector(submitButtonSelector);
 
-  inputList.forEach((formInput) => {
+  inputs.forEach((formInput) => {
     const errorElement = formElement.querySelector(getErrorElementClass(formInput.id));
     formInput.addEventListener('input', () => {
       if (isInputValid(formInput)){
@@ -118,7 +118,7 @@ const setEventListeners = (formElement, { inputSelector, inputErrorClass, submit
         markInputError(formInput, inputErrorClass);
       }
 
-      toggleButtonState(inputList, submitButton);
+      toggleButtonState(inputs, submitButton);
     });
   });
 };
