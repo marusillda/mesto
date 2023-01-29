@@ -1,10 +1,10 @@
 //Находим DOM-элементы
 const profileNameElement = document.querySelector('.profile__name');
 const profileAboutElement = document.querySelector('.profile__about');
-const editFormNameElement = document.querySelector('#profile_name');
-const editFormAboutElement = document.querySelector('#profile_about');
-const addFormNameElement = document.querySelector('#card_name');
-const addFormLinkElement = document.querySelector('#card_link');
+const editFormNameElement = document.querySelector('#profile-name');
+const editFormAboutElement = document.querySelector('#profile-about');
+const addFormNameElement = document.querySelector('#card-name');
+const addFormLinkElement = document.querySelector('#card-link');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
