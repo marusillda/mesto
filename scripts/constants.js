@@ -49,6 +49,9 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const pageForms = document.querySelectorAll(validationOptions.formSelector);
+const popupPreview = document.querySelector('.popup_type_image');
+const popupPreviewImage = popupPreview.querySelector('.popup__card-image');
+const popupPreviewName = popupPreview.querySelector('.popup__card-name');
 
 export {
   cardElements,
@@ -68,5 +71,8 @@ export {
   profileEditButton,
   profileAddButton,
   popupEditForm,
-  pageForms
+  pageForms,
+  popupPreview,
+  popupPreviewImage,
+  popupPreviewName
 }

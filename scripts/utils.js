@@ -89,10 +89,11 @@ export function handlePopupButtonClose(event) {
 /**
  * Обработчки открытия Popup с редактированием имени профиля и профессии
  */
-export function handlePopupEditOpen() {
+export function handlePopupEditOpen(popupEditFormValidator) {
   editFormNameElement.value = profileNameElement.textContent;
   editFormAboutElement.value = profileAboutElement.textContent;
-
+  //Очищает ошибки валидации
+  popupEditFormValidator.resetValidation();
   openPopup(popupEdit);
 }
 
