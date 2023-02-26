@@ -41,7 +41,7 @@
  - реализована валидация всех форм. Если хотя бы одно из полей формы не валидно - кнопка submit становится неактивной и выводится сообщение об ошибке к невалидному полю. Невалидное поле помечается красным подчеркиванием. Валидвция "живая".
  - реализовано закрыте любого попап по нажатию клавиши Escape.
  - реализовано закрытие попап по клику на любом месте в Overlay кроме попап.
- - произведен рефакторинг в объектно-ориентированном стиле: созданы классы Card и FormValidator.
+ - произведен рефакторинг в объектно-ориентированном стиле в соответствии принципами инкапсуляции, наследования и полиморфизма: созданы классы Card, Section, Popup, PopupWithImage, PopupWithForm, UserInfo, FormValidator.
  - используются ES6-классы, директивы import и  export.
 
 9. Плавное открытие и закрытие попапов реализовано с помощью свойств СSS visibility, opacity и transition.
@@ -66,11 +66,15 @@
  ┣ 📂pages
  ┃ ┗ 📜index.css
  ┣ 📂scripts
+ ┃ ┣ 📜Card.js
  ┃ ┣ 📜constants.js
- ┃ ┣ 📜index.js
- ┃ ┣ 📜utilis.js
  ┃ ┣ 📜FormValidator.js
- ┃ ┗ 📜Card.js
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜Popup.js
+ ┃ ┣ 📜PopupWithForm.js
+ ┃ ┣ 📜PopupWithImage.js
+ ┃ ┣ 📜Section.js
+ ┃ ┗ 📜UserInfo.js
  ┣ 📂vendor
  ┃ ┣ 📜fonts.css
  ┃ ┗ 📜normalize.css
