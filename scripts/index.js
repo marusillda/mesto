@@ -1,38 +1,48 @@
 import {
+  cardElementsSelector,
+  profileNameSelector,
+  profileAboutSelector,
+  popupEditSelector,
+  popupAddSelector,
   initialCards,
   validationOptions,
-  popupEditForm,
-  popupAddForm,
-  popupCloseButtons,
   profileEditButton,
   profileAddButton,
-  addFormNameElement,
-  addFormLinkElement,
-  popupNewCard,
   pageForms,
-  popupPreview,
-  popupPreviewImage,
-  popupPreviewName
+  popupPreviewSelector,
+  popupImageSelector,
+  popupNameSelector,
+  popupEditFormName,
+  popupFormSelector,
+  popupFieldSelector
 } from './constants.js';
-import {
-  appendCard,
-  handleEditFormSubmit,
-  handlePopupButtonClose,
-  handlePopupEditOpen,
-  handlePopupAddOpen,
-  prependCard,
-  closePopup,
-  openPopup
-} from './utils.js';
+
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import UserInfo from './UserInfo.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+
+const popupPreview = new PopupWithImage({popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector});
+popupPreview.setEventListeners();
+
+const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
+
+const popupEdit = new PopupWithForm({popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector}, (formValues) => {
+  userInfo.setUserInfo(formValues);
+});
+popupEdit.setEventListeners();
+
+const popupAdd = new PopupWithForm({popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector}, handleAddFormSubmit);
+popupAdd.setEventListeners();
 
 /**
  *
  * @param {{name: string, link: string}} item
  */
 function createCard(item) {
-  const card = new Card(item.name, item.link, '#card', handleCardClick);
+  const card = new Card(item.name, item.link, '#card', popupPreview.open.bind(popupPreview));
   const cardElement = card.getCard();
   return cardElement;
 }
@@ -40,36 +50,29 @@ function createCard(item) {
 /**
  * Загрузка начальных карточек из массива
  */
-function loadInitialCards() {
-  initialCards.forEach(function (initialCard) {
-    const cardElement = createCard(initialCard);
-    appendCard(cardElement);
-  });
-}
+const initialCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCard(item);
+    initialCardList.addItem(cardElement);
+  }
+}, cardElementsSelector);
+
+initialCardList.renderItems();
 
 /**
  * Обработчик события Add Form Submit
- * @param {Event} event
+ * @param {object} formValues
  */
-function handleAddFormSubmit(event) {
-  event.preventDefault();
-  const name = addFormNameElement.value;
-  const link = addFormLinkElement.value;
-  const cardElement = createCard({ name, link });
-  prependCard(cardElement);
-  closePopup(popupNewCard);
-}
-
-/**
- * Обработчик клика по карточке
- * @param {String} name
- * @param {String} link
- */
-function handleCardClick(name, link) {
-  popupPreviewImage.src = link;
-  popupPreviewImage.alt = name;
-  popupPreviewName.textContent = name;
-  openPopup(popupPreview);
+function handleAddFormSubmit(formValues) {
+  const newCard = new Section({
+    items: [formValues],
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      newCard.addItem(cardElement, false);
+    }
+  }, cardElementsSelector);
+  newCard.renderItems();
 }
 
 /**
@@ -87,20 +90,16 @@ function createFormValidator(formElement) {
 let popupEditFormValidator;
 pageForms.forEach(formElement => {
   const validator = createFormValidator(formElement);
-  if (formElement.name === popupEditForm.name) {
+  if (formElement.attributes.name.value === popupEditFormName) {
     popupEditFormValidator = validator;
   }
 });
 
-//Обработчики событий
-popupEditForm.addEventListener('submit', handleEditFormSubmit);
-popupAddForm.addEventListener('submit', handleAddFormSubmit);
-popupCloseButtons.forEach(function (closeButton) {
-  closeButton.addEventListener('click', handlePopupButtonClose);
-});
-profileEditButton.addEventListener('click', () => {
-  handlePopupEditOpen(popupEditFormValidator);
-});
-profileAddButton.addEventListener('click', handlePopupAddOpen);
 
-loadInitialCards();
+//Обработчики событий
+profileEditButton.addEventListener('click', () => {
+  popupEdit.open(userInfo.getUserInfo());
+  //Очищает ошибки валидации
+  popupEditFormValidator.resetValidation();
+});
+profileAddButton.addEventListener('click', () => {popupAdd.open();});

@@ -33,46 +33,36 @@ const validationOptions = {
 };
 
 //Находим DOM-элементы
-const cardElements = document.querySelector('.elements');
-const profileNameElement = document.querySelector('.profile__name');
-const profileAboutElement = document.querySelector('.profile__about');
-const editFormNameElement = document.querySelector('#profile-name');
-const editFormAboutElement = document.querySelector('#profile-about');
-const popupEdit = document.querySelector('.popup_type_edit');
-const popupNewCard = document.querySelector('.popup_type_new-card');
-const popupAddForm = popupNewCard.querySelector('.popup__form');
-const popupAddFormSubmitButton = popupAddForm.querySelector(validationOptions.submitButtonSelector);
-const addFormNameElement = document.querySelector('#card-name');
-const addFormLinkElement = document.querySelector('#card-link');
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+const cardElementsSelector = '.elements';
+const profileNameSelector = '.profile__name';
+const profileAboutSelector = '.profile__about';
+const popupImageSelector = '.popup__card-image';
+const popupNameSelector = '.popup__card-name';
+const popupPreviewSelector = '.popup_type_image';
+const popupEditSelector = '.popup_type_edit';
+const popupAddSelector = '.popup_type_new-card';
+const popupFormSelector = '.popup__form';
+const popupFieldSelector = '.popup__field';
+const popupEditFormName = 'editProfileForm';
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
-const popupEditForm = popupEdit.querySelector('.popup__form');
 const pageForms = document.querySelectorAll(validationOptions.formSelector);
-const popupPreview = document.querySelector('.popup_type_image');
-const popupPreviewImage = popupPreview.querySelector('.popup__card-image');
-const popupPreviewName = popupPreview.querySelector('.popup__card-name');
 
 export {
-  cardElements,
+  cardElementsSelector,
   initialCards,
   validationOptions,
-  profileNameElement,
-  profileAboutElement,
-  editFormNameElement,
-  editFormAboutElement,
-  popupEdit,
-  popupAddForm,
-  popupNewCard,
-  popupAddFormSubmitButton,
-  addFormNameElement,
-  addFormLinkElement,
-  popupCloseButtons,
+  profileNameSelector,
+  profileAboutSelector,
+  popupEditSelector,
+  popupAddSelector,
   profileEditButton,
   profileAddButton,
-  popupEditForm,
+  popupEditFormName,
   pageForms,
-  popupPreview,
-  popupPreviewImage,
-  popupPreviewName
+  popupPreviewSelector,
+  popupImageSelector,
+  popupNameSelector,
+  popupFormSelector,
+  popupFieldSelector
 }
