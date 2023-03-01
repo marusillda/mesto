@@ -46,9 +46,47 @@
 
 9. Плавное открытие и закрытие попапов реализовано с помощью свойств СSS visibility, opacity и transition.
 
-# Структура каталога проекта <a name="ProjectStructure"></a>
+10. Реализована сборка проекта с помощью Webpack. Сборка включает транспиляцию JS с помощью Babel, настроена минификация CSS и добавление вендорных префиксов.
+
+# Структура каталога проекта<a name="ProjectStructure"></a>
 
 ```
+
+📦mesto
+ ┣ 📂dist
+ ┣ 📂node_modules
+ ┣ 📂src
+ ┃ ┣ 📂blocks
+ ┃ ┣ 📂fonts
+ ┃ ┣ 📂images
+ ┃ ┣ 📂pages
+ ┃ ┃ ┗ 📜index.css
+ ┃ ┣ 📂scripts
+ ┃ ┃ ┣ 📜Card.js
+ ┃ ┃ ┣ 📜constants.js
+ ┃ ┃ ┣ 📜FormValidator.js
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜Popup.js
+ ┃ ┃ ┣ 📜PopupWithForm.js
+ ┃ ┃ ┣ 📜PopupWithImage.js
+ ┃ ┃ ┣ 📜Section.js
+ ┃ ┃ ┗ 📜UserInfo.js
+ ┃ ┣ 📂vendor
+ ┃ ┃ ┣ 📜fonts.css
+ ┃ ┃ ┗ 📜normalize.css
+ ┃ ┗ 📜index.html
+ ┣ 📜.editorconfig
+ ┣ 📜.gitignore
+ ┣ 📜.nojekyll
+ ┣ 📜babel.config.js
+ ┣ 📜package-lock.json
+ ┣ 📜package.json
+ ┣ 📜postcss.config.js
+ ┣ 📜README.md
+ ┗ 📜webpack.config.js
+
+До рефакторинга: реализция сборки с помощью Webpack
+
 📦mesto
  ┣ 📂blocks
  ┃ ┣ 📂element
@@ -83,6 +121,10 @@
  ┣ 📜index.html
  ┗ 📜README.md
 
+📜webpack.config.js - конфигурационный файл «Вебпака»
+📜postcss.config.js - файл для настроек PostCSS
+📜package.json - файл с информацией о версиях и зависимостях
+📜babel.config.js - файл для конфигурации Babel
 📜.editorconfig - Файл настроек форматирования кода
 📜.nojekyll     - Пустой файл, нужен для корректной публикации в GitHub Pages
 📜index.html    - Главная страница сайта

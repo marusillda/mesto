@@ -1,27 +1,34 @@
+import esto from '../images/element-esto.jpg';
+import anapa from '../images/element-anapa.jpg';
+import abrau from '../images/element-abrau.jpg';
+import mountain from '../images/element-mountain.jpg';
+import sochi from '../images/element-sochi.jpg';
+import rosa_hutor from '../images/element-rosa-hutor.jpg';
+
 const initialCards = [
   {
     name: 'Эсто-Садок',
-    link: './images/element-esto.jpg'
+    link: esto
   },
   {
     name: 'Побережье Анапы',
-    link: './images/element-anapa.jpg'
+    link: anapa
   },
   {
     name: 'Абрау Дюрсо',
-    link: './images/element-abrau.jpg'
+    link: abrau
   },
   {
     name: 'Красная Поляна',
-    link: './images/element-mountain.jpg'
+    link: mountain
   },
   {
     name: 'Морской вокзал Сочи',
-    link: './images/element-sochi.jpg'
+    link: sochi
   },
   {
     name: 'Роза Хутор',
-    link: './images/element-rosa-hutor.jpg'
+    link: rosa_hutor
   }
 ];
 
