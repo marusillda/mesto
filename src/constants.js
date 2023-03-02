@@ -1,9 +1,9 @@
-import esto from '../images/element-esto.jpg';
-import anapa from '../images/element-anapa.jpg';
-import abrau from '../images/element-abrau.jpg';
-import mountain from '../images/element-mountain.jpg';
-import sochi from '../images/element-sochi.jpg';
-import rosa_hutor from '../images/element-rosa-hutor.jpg';
+import esto from './images/element-esto.jpg';
+import anapa from './images/element-anapa.jpg';
+import abrau from './images/element-abrau.jpg';
+import mountain from './images/element-mountain.jpg';
+import sochi from './images/element-sochi.jpg';
+import rosa_hutor from './images/element-rosa-hutor.jpg';
 
 const initialCards = [
   {
@@ -50,6 +50,7 @@ const popupEditSelector = '.popup_type_edit';
 const popupAddSelector = '.popup_type_new-card';
 const popupFormSelector = '.popup__form';
 const popupFieldSelector = '.popup__field';
+const popupAddFormName = 'addCardForm';
 const popupEditFormName = 'editProfileForm';
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -65,6 +66,7 @@ export {
   popupAddSelector,
   profileEditButton,
   profileAddButton,
+  popupAddFormName,
   popupEditFormName,
   pageForms,
   popupPreviewSelector,

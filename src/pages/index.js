@@ -14,29 +14,30 @@ import {
   popupPreviewSelector,
   popupImageSelector,
   popupNameSelector,
+  popupAddFormName,
   popupEditFormName,
   popupFormSelector,
   popupFieldSelector
-} from './constants.js';
+} from '../constants.js';
 
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
-const popupPreview = new PopupWithImage({popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector});
+const popupPreview = new PopupWithImage({ popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector });
 popupPreview.setEventListeners();
 
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
 
-const popupEdit = new PopupWithForm({popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector}, (formValues) => {
+const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector }, (formValues) => {
   userInfo.setUserInfo(formValues);
 });
 popupEdit.setEventListeners();
 
-const popupAdd = new PopupWithForm({popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector}, handleAddFormSubmit);
+const popupAdd = new PopupWithForm({ popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector }, handleAddFormSubmit);
 popupAdd.setEventListeners();
 
 /**
@@ -67,14 +68,8 @@ initialCardList.renderItems();
  * @param {object} formValues
  */
 function handleAddFormSubmit(formValues) {
-  const newCard = new Section({
-    items: [formValues],
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      newCard.addItem(cardElement, false);
-    }
-  }, cardElementsSelector);
-  newCard.renderItems();
+  const cardElement = createCard(formValues);
+  initialCardList.addItem(cardElement, false);
 }
 
 /**
@@ -89,19 +84,21 @@ function createFormValidator(formElement) {
 }
 
 //Создает валидатор для каждой формы на странице и запоминаем валидатор для popupEditForm
-let popupEditFormValidator;
+const formValidators = {};
 pageForms.forEach(formElement => {
   const validator = createFormValidator(formElement);
-  if (formElement.attributes.name.value === popupEditFormName) {
-    popupEditFormValidator = validator;
-  }
-});
+  const formName = formElement.getAttribute('name');
 
+  formValidators[formName] = validator;
+});
 
 //Обработчики событий
 profileEditButton.addEventListener('click', () => {
   popupEdit.open(userInfo.getUserInfo());
   //Очищает ошибки валидации
-  popupEditFormValidator.resetValidation();
+  formValidators[popupEditFormName].resetValidation();
 });
-profileAddButton.addEventListener('click', () => {popupAdd.open();});
+profileAddButton.addEventListener('click', () => {
+  popupAdd.open();
+  formValidators[popupAddFormName].resetValidation();
+});
