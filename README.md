@@ -60,12 +60,11 @@
  ┃ ┣ 📂fonts
  ┃ ┣ 📂images
  ┃ ┣ 📂pages
- ┃ ┃ ┗ 📜index.css
- ┃ ┣ 📂scripts
- ┃ ┃ ┣ 📜Card.js
- ┃ ┃ ┣ 📜constants.js
- ┃ ┃ ┣ 📜FormValidator.js
  ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┗ 📜index.css
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📜Card.js
+ ┃ ┃ ┣ 📜FormValidator.js
  ┃ ┃ ┣ 📜Popup.js
  ┃ ┃ ┣ 📜PopupWithForm.js
  ┃ ┃ ┣ 📜PopupWithImage.js
@@ -74,6 +73,7 @@
  ┃ ┣ 📂vendor
  ┃ ┃ ┣ 📜fonts.css
  ┃ ┃ ┗ 📜normalize.css
+ ┃ ┣ 📜constants.js
  ┃ ┗ 📜index.html
  ┣ 📜.editorconfig
  ┣ 📜.gitignore
