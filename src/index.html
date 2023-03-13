@@ -14,7 +14,7 @@
   <main>
     <section class="profile">
       <div class="profile__user">
-        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар">
+        <img class="profile__avatar" src="" alt="Аватар">
         <div class="profile__profile-info">
           <div class="profile__name-editing">
             <h1 class="profile__name">Южанин</h1>
@@ -34,7 +34,10 @@
           <button type="button" class="element__trash" aria-label="Кнопка Удалить карточку"></button>
           <div class="element__capture-like">
             <h2 class="element__capture"></h2>
-            <button type="button" class="element__like" aria-label="Кнопка Поставить лайк"></button>
+            <div class="element__like">
+              <button type="button" class="element__like-button" aria-label="Кнопка Поставить лайк"></button>
+              <span class="element__like-number"></span>
+            </div>
           </div>
       </article>
       </template>

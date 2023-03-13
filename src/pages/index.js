@@ -4,9 +4,9 @@ import {
   cardElementsSelector,
   profileNameSelector,
   profileAboutSelector,
+  profileAvatarSelector,
   popupEditSelector,
   popupAddSelector,
-  initialCards,
   validationOptions,
   profileEditButton,
   profileAddButton,
@@ -17,7 +17,9 @@ import {
   popupAddFormName,
   popupEditFormName,
   popupFormSelector,
-  popupFieldSelector
+  popupFieldSelector,
+  baseUrl,
+  authorization
 } from '../constants.js';
 
 import Card from '../components/Card.js';
@@ -26,14 +28,21 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import Api from '../components/Api';
 
 const popupPreview = new PopupWithImage({ popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector });
 popupPreview.setEventListeners();
 
-const userInfo = new UserInfo(profileNameSelector, profileAboutSelector);
+let myId;
+
+const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
 
 const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector }, (formValues) => {
-  userInfo.setUserInfo(formValues);
+  api.changeUserProfile(formValues)
+    .then((userProfile) => {
+      userInfo.setUserInfo(userProfile);
+    })
+    .catch(error => console.error(error));
 });
 popupEdit.setEventListeners();
 
@@ -45,31 +54,39 @@ popupAdd.setEventListeners();
  * @param {{name: string, link: string}} item
  */
 function createCard(item) {
-  const card = new Card(item.name, item.link, '#card', popupPreview.open.bind(popupPreview));
+  const card = new Card(
+    {
+      data: item,
+      userId: myId,
+      handleCardClick: popupPreview.open.bind(popupPreview),
+      handleApiLikeButtonClick: (data, isLiked) => {
+        const promise = isLiked ? api.unlikeCard(data._id) : api.likeCard(data._id);
+        promise.catch(error => console.error(error));
+        return promise;
+      },
+      handleApiRemoveButtonClick: (data) => {
+        return api.deleteCard(data._id)
+          .catch(error => console.error(error));
+      }
+    },
+    '#card'
+  );
   const cardElement = card.getCard();
   return cardElement;
 }
-
-/**
- * Загрузка начальных карточек из массива
- */
-const initialCardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const cardElement = createCard(item);
-    initialCardList.addItem(cardElement);
-  }
-}, cardElementsSelector);
-
-initialCardList.renderItems();
 
 /**
  * Обработчик события Add Form Submit
  * @param {object} formValues
  */
 function handleAddFormSubmit(formValues) {
-  const cardElement = createCard(formValues);
-  initialCardList.addItem(cardElement, false);
+  api.addNewCard(formValues)
+    .then((card) => {
+      const cardElement = createCard(card);
+      initialCardList.addItem(cardElement, false);
+    }
+    )
+    .catch(error => console.error(error));
 }
 
 /**
@@ -102,3 +119,35 @@ profileAddButton.addEventListener('click', () => {
   popupAdd.open();
   formValidators[popupAddFormName].resetValidation();
 });
+
+const api = new Api({
+  baseUrl,
+  headers: {
+    authorization,
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getUserProfile()
+  .then((userProfile) => {
+    myId = userProfile._id;
+    userInfo.setUserInfo(userProfile);
+    userInfo.setUserAvatar(userProfile);
+  })
+  .catch(error => console.error(error));
+
+let initialCardList;
+
+api.getInitialCards()
+  .then((items) => {
+    initialCardList = new Section({
+      items,
+      renderer: (item) => {
+        const cardElement = createCard(item);
+        initialCardList.addItem(cardElement);
+      }
+    }, cardElementsSelector);
+
+    initialCardList.renderItems();
+  })
+  .catch(error => console.error(error));

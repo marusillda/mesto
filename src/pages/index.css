@@ -23,8 +23,9 @@
 @import url(../blocks/element/__trash/element__trash.css);
 @import url(../blocks/element/__capture-like/element__capture-like.css);
 @import url(../blocks/element/__capture/element__capture.css);
-@import url(../blocks/element/__like/element__like.css);
-@import url(../blocks/element/__like/element__like-fill.css);
+@import url(../blocks/element/__like-number/element__like-number.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
+@import url(../blocks/element/__like-button/element__like-button-fill.css);
 /*Всплывающий popup*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__error/popup__error.css);
