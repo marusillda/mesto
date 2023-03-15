@@ -9,6 +9,7 @@
 /*Секция profile*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__user/profile__user.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__profile-info/profile__profile-info.css);
 @import url(../blocks/profile/__name-editing/profile__name-editing.css);
@@ -23,6 +24,7 @@
 @import url(../blocks/element/__trash/element__trash.css);
 @import url(../blocks/element/__capture-like/element__capture-like.css);
 @import url(../blocks/element/__capture/element__capture.css);
+@import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like-number/element__like-number.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__like-button/element__like-button-fill.css);

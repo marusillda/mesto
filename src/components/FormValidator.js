@@ -117,7 +117,7 @@ export default class FormValidator {
   _setEventListeners() {
     this._inputs.forEach((formInput) => {
       const errorElement = this._formElement.querySelector(this._getErrorElementClass(formInput.id));
-      formInput.addEventListener('input', () => {
+      const handler =  () => {
         if (this._isInputValid(formInput)) {
           this._hideInputError(errorElement);
           this._unmarkInputError(formInput, this._validationOptions.inputErrorClass);
@@ -127,7 +127,9 @@ export default class FormValidator {
         }
 
         this._toggleButtonState();
-      });
+      };
+      formInput.addEventListener('input', handler);
+      formInput.addEventListener('paste', handler);
     });
     this._formElement.addEventListener('reset', () => {
       this.resetValidation();

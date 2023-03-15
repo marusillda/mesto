@@ -14,14 +14,15 @@
   <main>
     <section class="profile">
       <div class="profile__user">
+        <div class="profile__avatar-overlay"></div>
         <img class="profile__avatar" src="" alt="Аватар">
         <div class="profile__profile-info">
           <div class="profile__name-editing">
-            <h1 class="profile__name">Южанин</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="profile__edit-button selectable-white"
               aria-label="Кнопка редактирования профиля"></button>
           </div>
-          <p class="profile__about">Фотографируй глазами</p>
+          <p class="profile__about"></p>
         </div>
       </div>
       <button type="button" class="profile__add-button selectable-white"
@@ -77,6 +78,20 @@
       </form>
       <button type="button" class="popup__close-button selectable-white"
         aria-label="Кнопка закрытия окна редактирования профиля"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" name="editAvatarForm">
+        <input type="url" id="avatar-link" name="link" class="popup__field" placeholder="Ссылка на картинку" required>
+        <span class="popup__error avatar-link-error"></span>
+        <button type="submit" class="popup__submit-button selectable-black"
+          aria-label="Кнопка Сохранить">Сохранить</button>
+      </form>
+      <button type="button" class="popup__close-button selectable-white"
+        aria-label="Кнопка закрытия окна редактирования аватара"></button>
     </div>
   </div>
 

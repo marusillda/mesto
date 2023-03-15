@@ -113,6 +113,12 @@ export default class Api {
       headers: this._options.headers,
       body: JSON.stringify({ avatar })
     })
-      .then(res => res.json());
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+
+      return Promise.reject(`Ошибка изменения аватара: ${res.status}`)
+    });
   }
 }

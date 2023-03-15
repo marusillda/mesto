@@ -10,11 +10,14 @@ import {
   validationOptions,
   profileEditButton,
   profileAddButton,
+  profileAvatarElement,
   pageForms,
   popupPreviewSelector,
   popupImageSelector,
   popupNameSelector,
   popupAddFormName,
+  popupEditAvatarFormName,
+  popupEditAvatarSelector,
   popupEditFormName,
   popupFormSelector,
   popupFieldSelector,
@@ -49,6 +52,9 @@ popupEdit.setEventListeners();
 const popupAdd = new PopupWithForm({ popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector }, handleAddFormSubmit);
 popupAdd.setEventListeners();
 
+const popupEditAvatar = new PopupWithForm({popupSelector: popupEditAvatarSelector, popupFormSelector, popupFieldSelector}, handleEditAvatarFormSubmit);
+popupEditAvatar.setEventListeners();
+
 /**
  *
  * @param {{name: string, link: string}} item
@@ -73,6 +79,19 @@ function createCard(item) {
   );
   const cardElement = card.getCard();
   return cardElement;
+}
+
+/**
+ * Обработчик события Edit Avatar Form Submit
+ * @param {object} formValues
+ */
+function handleEditAvatarFormSubmit(formValues) {
+  api.changeAvatar(formValues.link)
+    .then((avatar) => {
+      userInfo.setUserAvatar(avatar);
+    }
+    )
+    .catch(error => console.error(error));
 }
 
 /**
@@ -118,6 +137,10 @@ profileEditButton.addEventListener('click', () => {
 profileAddButton.addEventListener('click', () => {
   popupAdd.open();
   formValidators[popupAddFormName].resetValidation();
+});
+profileAvatarElement.addEventListener('click', () => {
+  popupEditAvatar.open();
+  formValidators[popupEditAvatarFormName].resetValidation();
 });
 
 const api = new Api({
