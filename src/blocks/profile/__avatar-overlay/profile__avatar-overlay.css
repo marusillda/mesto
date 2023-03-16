@@ -7,7 +7,7 @@
   opacity: 0;
   transition: opacity .6s ease;
   cursor: pointer;
-  z-index: 5;
+  z-index: 1;
 }
 
 .profile__avatar-overlay:hover {

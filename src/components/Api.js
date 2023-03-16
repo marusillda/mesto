@@ -71,7 +71,13 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => res.json());
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+
+        return Promise.reject(`Ошибка удаления карточки: ${res.status}`)
+      });
   }
 
   likeCard(cardId) {
@@ -113,12 +119,12 @@ export default class Api {
       headers: this._options.headers,
       body: JSON.stringify({ avatar })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
 
-      return Promise.reject(`Ошибка изменения аватара: ${res.status}`)
-    });
+        return Promise.reject(`Ошибка изменения аватара: ${res.status}`)
+      });
   }
 }

@@ -5,6 +5,7 @@ import {
   profileNameSelector,
   profileAboutSelector,
   profileAvatarSelector,
+  popupDeleteCardSelector,
   popupEditSelector,
   popupAddSelector,
   validationOptions,
@@ -21,6 +22,7 @@ import {
   popupEditFormName,
   popupFormSelector,
   popupFieldSelector,
+  popupConfirmButtonSelector,
   baseUrl,
   authorization
 } from '../constants.js';
@@ -32,6 +34,7 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Api from '../components/Api';
+import PopupWithConfirm from '../components/PopupWithConfirm';
 
 const popupPreview = new PopupWithImage({ popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector });
 popupPreview.setEventListeners();
@@ -52,8 +55,11 @@ popupEdit.setEventListeners();
 const popupAdd = new PopupWithForm({ popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector }, handleAddFormSubmit);
 popupAdd.setEventListeners();
 
-const popupEditAvatar = new PopupWithForm({popupSelector: popupEditAvatarSelector, popupFormSelector, popupFieldSelector}, handleEditAvatarFormSubmit);
+const popupEditAvatar = new PopupWithForm({ popupSelector: popupEditAvatarSelector, popupFormSelector, popupFieldSelector }, handleEditAvatarFormSubmit);
 popupEditAvatar.setEventListeners();
+
+const popupDeleteConfirm = new PopupWithConfirm({ popupSelector: popupDeleteCardSelector, popupConfirmButtonSelector });
+popupDeleteConfirm.setEventListeners();
 
 /**
  *
@@ -71,8 +77,19 @@ function createCard(item) {
         return promise;
       },
       handleApiRemoveButtonClick: (data) => {
-        return api.deleteCard(data._id)
-          .catch(error => console.error(error));
+        const promise = new Promise((resolve, reject) => {
+          popupDeleteConfirm.setButtonClickAction(() => {
+            api.deleteCard(data._id)
+              .then(resolve)
+              .catch(error => {
+                reject(error);
+                console.error(error);
+              });
+          });
+          popupDeleteConfirm.open();
+        });
+
+        return promise;
       }
     },
     '#card'
