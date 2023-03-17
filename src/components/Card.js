@@ -3,18 +3,22 @@ export default class Card {
     this._data = data;
     this._userId = userId;
     this._displayTrash = this._data.owner._id === this._userId,
-    this._cardTemplate = document.querySelector(templateSelector).content.querySelector('.element');
+      this._cardTemplate = document.querySelector(templateSelector).content.querySelector('.element');
     this._handleCardClick = handleCardClick;
     this._handleApiLikeButtonClick = handleApiLikeButtonClick;
     this._handleApiRemoveButtonClick = handleApiRemoveButtonClick;
   }
 
-  _isLiked(){
+  /**
+   * Возвращает true, если мы поставили лайк
+   * @returns {Boolean}
+   */
+  _isLiked() {
     return this._data.likes.some(like => like._id === this._userId);
   }
 
   /**
-   * переключение состояния кнопки Like
+   * Переключение состояния кнопки Like
    */
   _toggleLikeCard() {
     this._likeButton.classList.toggle('element__like-button-fill', this._isLiked());
@@ -85,6 +89,9 @@ export default class Card {
     return cardElement;
   }
 
+  /**
+   * Устанавливает количество лайков
+   */
   _setLikeNumber() {
     this._likeNumber.textContent = this._data.likes.length;
   }

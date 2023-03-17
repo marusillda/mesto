@@ -45,7 +45,7 @@ let myId;
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
 
 const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector, popupSubmitButtonSelector }, (formValues) => {
- return api.changeUserProfile(formValues)
+  return api.changeUserProfile(formValues)
     .then((userProfile) => {
       userInfo.setUserInfo(userProfile);
     })
@@ -63,7 +63,7 @@ const popupDeleteConfirm = new PopupWithConfirm({ popupSelector: popupDeleteCard
 popupDeleteConfirm.setEventListeners();
 
 /**
- *
+ * Создаем карточку
  * @param {{name: string, link: string}} item
  */
 function createCard(item) {
@@ -169,6 +169,7 @@ const api = new Api({
   }
 });
 
+//Загрузка данных пользователя
 api.getUserProfile()
   .then((userProfile) => {
     myId = userProfile._id;
@@ -177,6 +178,7 @@ api.getUserProfile()
   })
   .catch(error => console.error(error));
 
+//Загружает начальные карточки
 let initialCardList;
 
 api.getInitialCards()

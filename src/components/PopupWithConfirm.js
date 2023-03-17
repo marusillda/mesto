@@ -14,6 +14,10 @@ export default class PopupWithConfirm extends Popup {
     super.setEventListeners();
   }
 
+  /**
+   * Задает действие, которое должно быть выполнено после подтверждения пользователем
+   * @param {Function} handleButtonClick
+   */
   setButtonClickAction(handleButtonClick){
     this._handleButtonClick = handleButtonClick;
   }

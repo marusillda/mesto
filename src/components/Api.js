@@ -3,6 +3,9 @@ export default class Api {
     this._options = options;
   }
 
+  /**
+   * Запрос списка начальных карточек
+   */
   getInitialCards() {
     return fetch(`${this._options.baseUrl}/cards`, {
       headers: {
@@ -18,6 +21,9 @@ export default class Api {
       });
   }
 
+  /**
+   * Запрос данных пользователя
+   */
   getUserProfile() {
     return fetch(`${this._options.baseUrl}/users/me`, {
       headers: {
@@ -31,9 +37,12 @@ export default class Api {
 
         return Promise.reject(`Ошибка получения данных пользователя: ${res.status}`);
       });
-
   }
 
+  /**
+   * Запрос на изменение данных пользователя
+   * @param {Object} userProfile
+   */
   changeUserProfile(userProfile) {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: 'PATCH',
@@ -49,6 +58,10 @@ export default class Api {
       });
   }
 
+  /**
+   * Запрос на создание новой карточки
+   * @param {Object} card
+   */
   addNewCard(card) {
     return fetch(`${this._options.baseUrl}/cards`, {
       method: 'POST',
@@ -64,6 +77,10 @@ export default class Api {
       });
   }
 
+  /**
+   * Запрос на удаление карточки
+   * @param {String} cardId
+   */
   deleteCard(cardId) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
@@ -80,6 +97,10 @@ export default class Api {
       });
   }
 
+  /**
+   * Запрос на добавление лайка карточке
+   * @param {String} cardId
+   */
   likeCard(cardId) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
@@ -96,7 +117,10 @@ export default class Api {
       });
   }
 
-
+  /**
+   * Запрос на снятие лайка с карточки
+   * @param {String} cardId
+   */
   unlikeCard(cardId) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
@@ -113,6 +137,10 @@ export default class Api {
       });
   }
 
+  /**
+   * Запрос на изменение аватара
+   * @param {String} avatar
+   */
   changeAvatar(avatar) {
     return fetch(`${this._options.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
