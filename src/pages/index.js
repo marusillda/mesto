@@ -40,7 +40,7 @@ import PopupWithConfirm from '../components/PopupWithConfirm';
 const popupPreview = new PopupWithImage({ popupSelector: popupPreviewSelector, popupImageSelector, popupNameSelector });
 popupPreview.setEventListeners();
 
-let myId;
+let myId, initialCardList;
 
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
 
@@ -169,28 +169,23 @@ const api = new Api({
   }
 });
 
-//Загрузка данных пользователя
-api.getUserProfile()
-  .then((userProfile) => {
-    myId = userProfile._id;
-    userInfo.setUserInfo(userProfile);
-    userInfo.setUserAvatar(userProfile);
-  })
-  .catch(error => console.error(error));
+Promise.all([
+  api.getUserProfile(),
+  api.getInitialCards()
+])
+.then(([userProfile, items]) => {
+  myId = userProfile._id;
+  userInfo.setUserInfo(userProfile);
+  userInfo.setUserAvatar(userProfile);
 
-//Загружает начальные карточки
-let initialCardList;
+  initialCardList = new Section({
+    items,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      initialCardList.addItem(cardElement);
+    }
+  }, cardElementsSelector);
 
-api.getInitialCards()
-  .then((items) => {
-    initialCardList = new Section({
-      items,
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        initialCardList.addItem(cardElement);
-      }
-    }, cardElementsSelector);
-
-    initialCardList.renderItems();
-  })
-  .catch(error => console.error(error));
+  initialCardList.renderItems();
+})
+.catch(error => console.error(error));
