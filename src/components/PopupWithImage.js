@@ -23,7 +23,7 @@ export default class PopupWithImage extends Popup {
    * Очищает попап с картинкой перед открытием следующего
    */
   _clear() {
-    this._popupPreviewImage.src = '';
+    this._popupPreviewImage.src = '#';
     this._popupPreviewImage.alt = '';
     this._popupPreviewName.textContent = '';
   }
