@@ -22,6 +22,7 @@ import {
   popupEditFormName,
   popupFormSelector,
   popupFieldSelector,
+  popupSubmitButtonSelector,
   popupConfirmButtonSelector,
   baseUrl,
   authorization
@@ -43,8 +44,8 @@ let myId;
 
 const userInfo = new UserInfo(profileNameSelector, profileAboutSelector, profileAvatarSelector);
 
-const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector }, (formValues) => {
-  api.changeUserProfile(formValues)
+const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFormSelector, popupFieldSelector, popupSubmitButtonSelector }, (formValues) => {
+ return api.changeUserProfile(formValues)
     .then((userProfile) => {
       userInfo.setUserInfo(userProfile);
     })
@@ -52,10 +53,10 @@ const popupEdit = new PopupWithForm({ popupSelector: popupEditSelector, popupFor
 });
 popupEdit.setEventListeners();
 
-const popupAdd = new PopupWithForm({ popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector }, handleAddFormSubmit);
+const popupAdd = new PopupWithForm({ popupSelector: popupAddSelector, popupFormSelector, popupFieldSelector, popupSubmitButtonSelector }, handleAddFormSubmit);
 popupAdd.setEventListeners();
 
-const popupEditAvatar = new PopupWithForm({ popupSelector: popupEditAvatarSelector, popupFormSelector, popupFieldSelector }, handleEditAvatarFormSubmit);
+const popupEditAvatar = new PopupWithForm({ popupSelector: popupEditAvatarSelector, popupFormSelector, popupFieldSelector, popupSubmitButtonSelector }, handleEditAvatarFormSubmit);
 popupEditAvatar.setEventListeners();
 
 const popupDeleteConfirm = new PopupWithConfirm({ popupSelector: popupDeleteCardSelector, popupConfirmButtonSelector });
@@ -103,7 +104,7 @@ function createCard(item) {
  * @param {object} formValues
  */
 function handleEditAvatarFormSubmit(formValues) {
-  api.changeAvatar(formValues.link)
+  return api.changeAvatar(formValues.link)
     .then((avatar) => {
       userInfo.setUserAvatar(avatar);
     }
@@ -116,7 +117,7 @@ function handleEditAvatarFormSubmit(formValues) {
  * @param {object} formValues
  */
 function handleAddFormSubmit(formValues) {
-  api.addNewCard(formValues)
+  return api.addNewCard(formValues)
     .then((card) => {
       const cardElement = createCard(card);
       initialCardList.addItem(cardElement, false);

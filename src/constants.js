@@ -19,6 +19,7 @@ const popupEditAvatarSelector = '.popup_type_edit-avatar';
 const popupDeleteCardSelector ='.popup_type_delete-confirm';
 const popupFormSelector = '.popup__form';
 const popupFieldSelector = '.popup__field';
+const popupSubmitButtonSelector = '.popup__submit-button';
 const popupConfirmButtonSelector = '.popup__confirm-button';
 const popupAddFormName = 'addCardForm';
 const popupEditFormName = 'editProfileForm';
@@ -51,6 +52,7 @@ export {
   popupNameSelector,
   popupFormSelector,
   popupFieldSelector,
+  popupSubmitButtonSelector,
   popupConfirmButtonSelector,
   popupEditAvatarSelector,
   baseUrl,
