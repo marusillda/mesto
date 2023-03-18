@@ -3,6 +3,14 @@ export default class Api {
     this._options = options;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка при выполнении запроса: ${res.status}`);
+  }
+
   /**
    * Запрос списка начальных карточек
    */
@@ -12,13 +20,7 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка получения начальных карточек: ${res.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -30,13 +32,7 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка получения данных пользователя: ${res.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -49,13 +45,7 @@ export default class Api {
       headers: this._options.headers,
       body: JSON.stringify(userProfile)
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка изменения данных пользователя: ${res.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -68,13 +58,7 @@ export default class Api {
       headers: this._options.headers,
       body: JSON.stringify(card)
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка добавления новой карточки: ${res.status}`)
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -88,13 +72,7 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка удаления карточки: ${res.status}`)
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -108,13 +86,7 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка добавления лайка карточке: ${res.status}`)
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -128,13 +100,7 @@ export default class Api {
         authorization: this._options.headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка снятия лайка с карточки: ${res.status}`)
-      });
+      .then(this._checkResponse);
   }
 
   /**
@@ -147,12 +113,6 @@ export default class Api {
       headers: this._options.headers,
       body: JSON.stringify({ avatar })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return Promise.reject(`Ошибка изменения аватара: ${res.status}`)
-      });
+      .then(this._checkResponse);
   }
 }

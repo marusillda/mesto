@@ -17,10 +17,12 @@ export default class PopupWithForm extends Popup {
       this._handleSubmitForm(this._getInputValues())
         .then(() => {
           this.close();
+        })
+        .finally(() => {
           setTimeout(() => {
             this._submitButton.textContent = submitButtonText;
-          }, 1000);
-        });
+          }, 500);
+        })
     });
     super.setEventListeners();
   }

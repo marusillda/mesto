@@ -82,6 +82,9 @@ function createCard(item) {
           popupDeleteConfirm.setButtonClickAction(() => {
             api.deleteCard(data._id)
               .then(resolve)
+              .then(() => {
+                popupDeleteConfirm.close();
+              })
               .catch(error => {
                 reject(error);
                 console.error(error);
