@@ -2,7 +2,7 @@
 
 ## [Демонстрация сайта](https://marusillda.github.io/mesto/)
 
-![Превью проекта](./images/preview.jpg)
+![Превью проекта](./src/images/preview.jpg)
 
 ## ***Содержание:***
 - [Описание проекта](#Description)
